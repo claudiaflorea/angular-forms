@@ -1,0 +1,68 @@
+<h3> Angular Form Validations using  Template Driven  </h3>
+<hr/>
+
+
+<form #vehicleForm="ngForm" class="container" (ngSubmit)="submit_click()">
+    <fieldset>
+        <label>Owner Name : </label>
+        <input type="text"  [(ngModel)]="ownerName" 
+               #txtOwnerName="ngModel"  name="txtOwnerName"  required="true"  />
+        <span class="error" *ngIf="txtOwnerName.invalid && txtOwnerName.dirty ">Owner Name is required</span>
+        <br/><br/>
+
+        <label>Contact Number : </label>
+        <input type="text"  
+               [(ngModel)]="contactNr" 
+               #txtContactNr="ngModel"  
+               name="txtContactNr"  
+               required="true"  
+               minlength="10"   
+               maxlength="10"
+                />
+        <span class="error" *ngIf="txtContactNr.invalid && txtContactNr.dirty ">Contact Nr. is required and it should contain 10 digits</span>
+        <br/><br/>
+
+
+        Owner Email Address  :
+        <input  type="text"  
+                [(ngModel)]="ownerEmail"
+                name="txtOwnerEmail"  
+                #txtOwnerEmail="ngModel"
+                email="true"
+          />
+     
+            <span class="error"  *ngIf="txtOwnerEmail.invalid && txtOwnerEmail.dirty">
+                Owner Email Address is required
+            </span>
+        <br><br>
+
+        Registration number  :
+        <input  type="text"  
+                [(ngModel)]="regNo"
+                name="txtRegNo"  
+                #txtRegNo="ngModel" 
+                pattern="[A-Za-z]{1,3}-[A-Za-z]{1,2}-[0-9]{1,4}"
+                />
+        <span class="error"  *ngIf="txtRegNo.invalid && txtRegNo.dirty">
+        Enter valid registration number (Eg:  ABC-AB-1234)
+        </span>
+        <br><br>
+
+        Address :
+        <input  type="text"  
+                [(ngModel)]="address"
+                name="txtAddress"  
+                #txtAddress="ngModel"
+                 />
+     
+        <span class="error"  *ngIf="txtAddress.invalid && txtAddress.dirty">
+            Address should allow six digits
+        </span>
+        <br><br>
+
+        <input type="submit" [disabled]="vehicleForm.invalid"  value="Register"  />
+
+    </fieldset>
+</form>
+
+<router-outlet></router-outlet>

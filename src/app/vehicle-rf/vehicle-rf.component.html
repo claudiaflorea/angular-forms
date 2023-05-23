@@ -1,0 +1,111 @@
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"  rel="stylesheet"  />
+
+<h5 class="card-header">Angular Reactive Form Validation</h5>
+<div class="container">
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <label>Owner Name</label>
+            <input type="text" 
+                   formControlName="ownerName" 
+                   class="form-control" 
+                   [ngClass]="{ 'is-invalid': submitted && f['ownerName'].errors }" />                     
+            <div *ngIf="submitted && f['ownerName'].errors" class="invalid-feedback">
+                <div *ngIf="f['ownerName'].errors['required']">Owner Name is required</div>
+            </div>
+        </div>
+
+        <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <label>Contact Number</label>
+            <input type="text" 
+                    formControlName="contactNumber" 
+                    class="form-control" 
+                    [ngClass]="{ 'is-invalid': submitted && f['contactNumber'].errors }" />
+            <div *ngIf="submitted && f['contactNumber'].errors" class="invalid-feedback">
+                <div *ngIf="f['contactNumber'].errors['required']">Contact Nr. is required</div>
+                <div *ngIf="f['contactNumber'].errors['minlength']">Contact Nr. must have 10 digits</div>
+                <div *ngIf="f['contactNumber'].errors['maxlength']">Contact Nr. must have 10 digits</div>
+                <div *ngIf="f['contactNumber'].errors['pattern']">Contact Nr. must have 10 digits</div>
+            </div>
+        </div>
+        
+        <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <label>Owner Email Address</label>
+            <input type="text" 
+                    formControlName="ownerEmail" 
+                    class="form-control" 
+                    [ngClass]="{ 'is-invalid': submitted && f['ownerEmail'].errors }" />
+            <div *ngIf="submitted && f['ownerEmail'].errors" class="invalid-feedback">
+                <div *ngIf="f['ownerEmail'].errors['required']">Owner Email Address is required</div>
+                <div *ngIf="f['ownerEmail'].errors['email']">Owner Email Address must be a valid email address</div>
+            </div>
+        </div>
+
+        <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <label>Registration Number </label>
+            <input type="text" 
+                    formControlName="regNo" 
+                    class="form-control" 
+                    [ngClass]="{ 'is-invalid': submitted && f['regNo'].errors }" />
+            <div *ngIf="submitted && f['regNo'].errors" class="invalid-feedback">
+                <div *ngIf="f['regNo'].errors['required']">Registration Number is required</div>
+                <div *ngIf="f['regNo'].errors['pattern']">Registration Number must valid (eg. ABC-AB-1234) </div>
+            </div>
+        </div>
+    
+
+        <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <label>Address</label>
+            <input type="text" 
+                    formControlName="address" 
+                    class="form-control" 
+                    [ngClass]="{ 'is-invalid': submitted && f['address'].errors }" />
+            <div *ngIf="submitted && f['address'].errors" class="invalid-feedback">
+                <div *ngIf="f['address'].errors['required']">Address is required</div>
+            </div>
+        </div>
+
+        <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <label>Vehicle Model</label>
+            <input type="text" 
+                    formControlName="model" class="form-control" 
+                    [ngClass]="{ 'is-invalid': submitted && f['model'].errors }" />
+            <div *ngIf="submitted && f['model'].errors" class="invalid-feedback">
+                <div *ngIf="f['model'].errors['required']">Model is required</div>
+                <div *ngIf="f['model'].errors['maxlength']">Model must have at most 10 characters</div>
+            </div>
+        </div>
+
+        <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <label>Color</label>
+            <input type="text" 
+                    formControlName="color" 
+                    class="form-control" 
+                    [ngClass]="{ 'is-invalid': submitted && f['color'].errors }" />              
+            <div *ngIf="submitted && f['color'].errors" class="invalid-feedback">
+                <div *ngIf="f['color'].errors['required']">Color is required</div>
+            </div>
+        </div>
+
+        <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <label>Vehicle Year</label>
+            <input type="text" 
+                    formControlName="year" 
+                    class="form-control" 
+                    [ngClass]="{ 'is-invalid': submitted && f['year'].errors }" />
+            <div *ngIf="submitted && f['year'].errors" class="invalid-feedback">
+                <div *ngIf="f['year'].errors['required']">Year is required</div>
+                <div *ngIf="f['year'].errors['pattern']">Year must be numeric</div>
+                <div *ngIf="f['year'].errors['min']">Year must be between 2012 and 2022</div>
+                <div *ngIf="f['year'].errors['max']">Year must be between 2012 and 2022</div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button class="btn btn-primary mr-1">Register</button>
+            <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+        </div>
+
+    </form>
+</div>
